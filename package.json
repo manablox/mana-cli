@@ -6,9 +6,23 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "bin": {
+    "mana": "./bin/mana"
+  },
+  "scripts": {
+    "reinstall": "rm -rf node_modules; rm -rf yarn.lock; yarn",
+    "release": "standard-version; git push --follow-tags origin master; npm publish"
+  },
   "dependencies": {
     "commander": "^5.1.0",
     "prompts": "^2.3.2",
     "shelljs": "^0.8.4"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.1.2",
+    "husky": "^4.2.5",
+    "standard-version": "^8.0.0"
   }
 }
