@@ -13,6 +13,16 @@
     "reinstall": "rm -rf node_modules; rm -rf yarn.lock; yarn",
     "release": "standard-version; git push --follow-tags origin master; npm publish"
   },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "dependencies": {
     "commander": "^5.1.0",
     "prompts": "^2.3.2",
