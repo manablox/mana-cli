@@ -11,8 +11,8 @@
   },
   "scripts": {
     "reinstall": "rm -rf node_modules; rm -rf yarn.lock; yarn",
-    "push": "standard-version; git push --follow-tags origin master",
-    "release": "yarn push; npm publish"
+    "pushversion": "standard-version; git push --follow-tags origin master",
+    "release": "yarn pushversion; npm publish"
   },
   "config": {
     "commitizen": {
