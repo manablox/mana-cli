@@ -1,8 +1,6 @@
 import GraphModuleGenerator from '~~/services/graphql/utils/generatemodule'
 
 const Start = async () => {
-    console.log('test')        
-
     try {
         const graphModuleGenerator = new GraphModuleGenerator()
 
@@ -13,6 +11,8 @@ const Start = async () => {
         for(let i = 0; i < types.length; i++){
             await graphModuleGenerator.Generate(types[i])
         }
+
+        console.log('datatypes generated', types.map((type) => { console.log(type.name) }))
     }catch(err){
         console.log(err)
     }
