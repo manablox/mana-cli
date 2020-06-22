@@ -36,8 +36,8 @@ program
             name: `node`,
             maxBuffer: 1024 * 1024 * 512,
             args: [ `${ cliRootDir }/tasks/dev/index.js`, ...process.argv.slice(3) ],
-            env: { WORKDIR: workDir, ENTRYFILE: file },
-            cwd: __dirname.replace('/bin', '')
+            env: { WORKDIR: workDir, ENTRYFILE: file, CLIROOTDIR: __dirname.replace('/bin', '') },
+            cwd: workDir
         })
     })
 
@@ -50,7 +50,21 @@ program
             name: `node`,
             maxBuffer: 1024 * 1024 * 512,
             args: [ `${ cliRootDir }/tasks/production/index.js`, ...process.argv.slice(3) ],
-            env: { WORKDIR: workDir, ENTRYFILE: file },
+            env: { WORKDIR: workDir, ENTRYFILE: file, CLIROOTDIR: __dirname.replace('/bin', '') },
+            cwd: workDir
+        })
+    })
+
+
+// Create a stack
+program
+    .command('stack:create <stack> <name>')
+    .action(async () => {
+        await Process.Run({ 
+            name: `node`,
+            maxBuffer: 1024 * 1024 * 512,
+            args: [ `${ cliRootDir }/tasks/stackcreate/index.js`, ...process.argv.slice(3) ],
+            env: { WORKDIR: workDir },
             cwd: __dirname.replace('/bin', '')
         })
     })

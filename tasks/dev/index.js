@@ -8,7 +8,7 @@ const once = require('ramda').once
 
 
 const taskDir = __dirname
-const cliRootDir = process.cwd()
+const cliRootDir = process.env.CLIROOTDIR
 const workDir = process.env.WORKDIR
 const args = process.argv.slice(2)
 

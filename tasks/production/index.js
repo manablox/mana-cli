@@ -9,7 +9,7 @@ const Process = require('../../utils/process')
 
 
 const taskDir = __dirname
-const cliRootDir = process.cwd()
+const cliRootDir = process.env.CLIROOTDIR//process.cwd()
 const workDir = process.env.WORKDIR
 const args = process.argv.slice(2)
 
