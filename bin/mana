@@ -56,6 +56,20 @@ program
     })
 
 
+// build a manablox production server
+program
+    .command('build [file]')
+    .action(async (file = 'index.js') => {
+        await Process.Run({ 
+            name: `node`,
+            maxBuffer: 1024 * 1024 * 512,
+            args: [ `${ cliRootDir }/tasks/builder/index.js`, ...process.argv.slice(3) ],
+            env: { WORKDIR: workDir, ENTRYFILE: file, CLIROOTDIR: __dirname.replace('/bin', '') },
+            cwd: workDir
+        })
+    })
+
+
 // Create a stack
 program
     .command('stack:create <stack> <name>')

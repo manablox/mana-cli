@@ -9,8 +9,8 @@
     "node": "13.x"
   },
   "scripts": {
-    "dev": "manablox dev",
-    "postinstall": "manablox build",
+    "dev": "mana dev",
+    "postinstall": "mana build",
     "start": "node build/index.js",
 
     "create:develop": "./create develop master",
@@ -28,7 +28,7 @@
     "log:beta": "heroku logs --tail --remote beta",
     "log:production": "heroku logs --tail --remote production",
 
-    "datatypes:create": "manablox build -r tools/datatypegenerator"
+    "datatypes:create": "mana production tools/datatypegenerator"
   },
   "dependencies": {
     "@graphql-modules/core": "^0.7.17",
@@ -50,7 +50,7 @@
     "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.3",
     "helmet": "^3.23.1",
-    "manablox-cli": "^1.4.1",
+    "manablox/mana-cli": "^1.4.1",
     "mongodb": "^3.5.9",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
