@@ -2,7 +2,14 @@ import * as typeDefs from './schema.graphql'
 import resolvers from './resolvers'
 import Provider from './provider'
 
+<%if(typeof imports !== 'undefined' && imports.length > 0) { 
+    imports.forEach((importType) => { %>
+        import <%= importType.capitalize() %>Graph from '../<%= importType %>'
+<% })} %>
+
 const provider = new Provider('<%= collection %>')
+
+
 
 export default {
     autoload: true,
@@ -14,5 +21,10 @@ export default {
 
         return context
     },
-    imports: []
+    imports: [
+        <%if(typeof imports !== 'undefined' && imports.length > 0) { 
+            imports.forEach((importType) => { %>
+                <%= importType.capitalize() %>Graph
+        <% })} %>
+    ]
 }
