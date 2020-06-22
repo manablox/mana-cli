@@ -1,0 +1,9 @@
+{
+  "name": "datatypegenerator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "nuxt": "^2.13.0"
+  }
+}

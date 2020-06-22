@@ -1,9 +1,29 @@
-export default class Process {
-    static async Start(_process, args = []){
-        return new Promise((resolve, reject) => {
-            const _processInstance = spawn(_process, args, { stdio: 'inherit' })
-            _processInstance.on('close', (code) => { resolve() })
-            _processInstance.on('error', (err) => { console.error(err); reject(); process.exit(1) })
+const util = require('util');
+const { cwd } = require('process');
+const exec = util.promisify(require('child_process').exec);
+
+module.exports = class Process {
+    static async Run({ 
+        name = null, 
+        args = [], 
+        env = {}, 
+        onStdout = () => {},
+        cwd = null
+    }){
+        const _process = exec(`${ name } ${ args.join(' ') }`, {
+            cwd: cwd,
+            env: {
+                ...process.env,
+                ...env
+            }
         })
+
+        _process.child.stdout.on('data', (text) => { onStdout(text) })
+        
+        const { stdout, error, stderr } = await _process
+        
+        if(error) return { error, stderr }
+        
+        return stdout
     }
 }

@@ -1,1 +1,55 @@
 #!/usr/bin/env node
+const { program } = require('commander')
+
+const Process = require('../utils/process')
+
+const binDir = __dirname
+const cliRootDir = binDir.replace('/bin', '')
+const workDir = process.cwd()
+
+// start the manablox control web app
+program
+    .command('app')
+    .option('--host <host>', 'App Host ip address')
+    .option('-p, --port <port>', 'App Port number')
+    .action(async (command) => { 
+        const { 
+            host = '127.0.0.1', 
+            port = '3000' 
+        } = command.opts()
+
+        await Process.Run({ 
+            name: `node`,
+            maxBuffer: 1024 * 1024 * 512,
+            args: [ `${ cliRootDir }/tasks/app/index.js`, ...process.argv.slice(3) ],
+            env: { HOST: host, PORT: port, WORKDIR: workDir },
+            onStdout(line){ console.log(line) },
+            cwd: __dirname.replace('/bin', '')
+        })
+    })
+
+
+// start the manablox dev server
+program
+    .command('dev [file]')
+    .action(async (file = 'index.js') => {
+        await Process.Run({ 
+            name: `node`,
+            maxBuffer: 1024 * 1024 * 512,
+            args: [ `${ cliRootDir }/tasks/dev/index.js`, ...process.argv.slice(3) ],
+            env: { WORKDIR: workDir, ENTRYFILE: file },
+            onStdout(line){ console.log(line) },
+            cwd: __dirname.replace('/bin', '')
+        })
+    })
+
+
+
+program.parse(process.argv)
+
+
+// const Start = async () => {
+//     console.log(await Process.Run('ls -ahl'))
+// }
+
+// Start()
