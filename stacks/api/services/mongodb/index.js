@@ -22,7 +22,13 @@ class MongodbService {
 
     Initialize(){
         // console.log('initialize db connection')
-        this.client = new MongoClient(`${ this.config.protocol }://${ this.config.user }:${ this.config.pass }@${ this.config.host }`, this.config.settings)
+        let connectionString = `${ this.config.protocol }://`
+        if(this.config.user != '' && this.config.pass != ''){
+            connectionString += `${ this.config.user }:${ this.config.pass }@`
+        }
+        connectionString += this.config.host
+        
+        this.client = new MongoClient(connectionString, this.config.settings)
     }
 
     async Connect(){
