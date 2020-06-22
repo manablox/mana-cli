@@ -23,7 +23,6 @@ program
             maxBuffer: 1024 * 1024 * 512,
             args: [ `${ cliRootDir }/tasks/app/index.js`, ...process.argv.slice(3) ],
             env: { HOST: host, PORT: port, WORKDIR: workDir },
-            onStdout(line){ console.log(line) },
             cwd: __dirname.replace('/bin', '')
         })
     })
@@ -38,7 +37,20 @@ program
             maxBuffer: 1024 * 1024 * 512,
             args: [ `${ cliRootDir }/tasks/dev/index.js`, ...process.argv.slice(3) ],
             env: { WORKDIR: workDir, ENTRYFILE: file },
-            onStdout(line){ console.log(line) },
+            cwd: __dirname.replace('/bin', '')
+        })
+    })
+
+
+// start the manablox production server
+program
+    .command('production [file]')
+    .action(async (file = 'index.js') => {
+        await Process.Run({ 
+            name: `node`,
+            maxBuffer: 1024 * 1024 * 512,
+            args: [ `${ cliRootDir }/tasks/production/index.js`, ...process.argv.slice(3) ],
+            env: { WORKDIR: workDir, ENTRYFILE: file },
             cwd: __dirname.replace('/bin', '')
         })
     })
@@ -46,10 +58,3 @@ program
 
 
 program.parse(process.argv)
-
-
-// const Start = async () => {
-//     console.log(await Process.Run('ls -ahl'))
-// }
-
-// Start()

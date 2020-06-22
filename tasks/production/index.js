@@ -5,6 +5,7 @@ const fsJetpack = require('fs-jetpack')
 const nodeExternals = require('webpack-node-externals')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const once = require('ramda').once
+const Process = require('../../utils/process')
 
 
 const taskDir = __dirname
@@ -122,7 +123,7 @@ let userConfig = {}
 let serverConfig = {}
 
 let webpackOptions = {
-    env: process.env.NODE_ENV || 'development',
+    env: process.env.NODE_ENV || 'production',
     paths: {
         rootPath: workDir,
         buildPath: path.join(workDir, 'build'),
@@ -153,21 +154,15 @@ serverConfig = userConfig.webpack
 process.on('SIGINT', process.exit)
 
 const serverCompiler = webpack(serverConfig)
+serverCompiler.run(async (error, stats) => {
+    if(error || stats.hasErrors()){
+        console.error(error)
+        process.exit(1)
+    }
 
-const StartServer = () => {
-    const serverPaths = Object.keys(serverCompiler.options.entry).map((entry) => {
-        return path.join(serverCompiler.options.output.path, webpackOptions.paths.sourceFileName)
+    await Process.Run({
+        name: 'node',
+        args: [path.join(webpackOptions.paths.buildPath, webpackOptions.paths.sourceFileName)],
+        cwd: workDir
     })
-
-    nodemon({
-        exec: 'node',
-        script: serverPaths[0],
-        watch: serverPaths,
-        nodeArgs: [...args]
-    }).on('quit', process.exit)
-}
-
-serverCompiler.watch(serverConfig.watchOptions || {}, once((err, stats) => {
-    if(err) return
-    StartServer()
-}))
+})

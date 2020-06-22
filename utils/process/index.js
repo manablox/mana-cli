@@ -7,7 +7,8 @@ module.exports = class Process {
         name = null, 
         args = [], 
         env = {}, 
-        onStdout = () => {},
+        onStdout = (txt) => { console.log(txt.trim()) },
+        onStderr = (txt) => { console.error(txt.trim()) },
         cwd = null
     }){
         const _process = exec(`${ name } ${ args.join(' ') }`, {
@@ -19,6 +20,7 @@ module.exports = class Process {
         })
 
         _process.child.stdout.on('data', (text) => { onStdout(text) })
+        _process.child.stderr.on('data', (text) => { onStderr(text) })
         
         const { stdout, error, stderr } = await _process
         
