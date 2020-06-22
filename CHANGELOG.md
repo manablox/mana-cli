@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.9](https://github.com/manablox/mana-cli/compare/v1.5.8...v1.5.9) (2020-06-22)
+
+
+### Bug Fixes
+
+* fixed mongodb connetion ([7526384](https://github.com/manablox/mana-cli/commit/7526384b68ee40c3156c886c9793bb346b442974))
+
 ### [1.5.8](https://github.com/manablox/mana-cli/compare/v1.5.7...v1.5.8) (2020-06-22)
 
 ### [1.5.7](https://github.com/manablox/mana-cli/compare/v1.5.6...v1.5.7) (2020-06-22)
