@@ -26,8 +26,8 @@ class MongodbService {
         if(this.config.user != '' && this.config.pass != ''){
             connectionString += `${ this.config.user }:${ this.config.pass }@`
         }
-        connectionString += this.config.host
-        
+        connectionString += `${ this.config.host }/${ this.config.database }`
+
         this.client = new MongoClient(connectionString, this.config.settings)
     }
 

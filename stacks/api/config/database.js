@@ -10,8 +10,8 @@ export default {
     protocol: process.env.DB_PROTOCOL || 'mongodb',
 
     // database access
-    user: process.env.DB_USER || 'admin',
-    pass: process.env.DB_PASS || 'admin',
+    user: process.env.DB_USER,
+    pass: process.env.DB_PASS,
     
     // database port
     port: process.env.DB_PORT || 27017,
