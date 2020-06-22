@@ -1,3 +1,4 @@
+import { GraphQLModule } from '@graphql-modules/core'
 import * as typeDefs from './schema.graphql'
 import resolvers from './resolvers'
 import Provider from './provider'
@@ -24,7 +25,7 @@ export default {
     imports: [
         <%if(typeof imports !== 'undefined' && imports.length > 0) { 
             imports.forEach((importType) => { %>
-                <%= importType.capitalize() %>Graph
+                new GraphQLModule(<%= importType.capitalize() %>Graph)
         <% })} %>
     ]
 }
