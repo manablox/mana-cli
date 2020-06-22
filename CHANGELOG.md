@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/manablox/mana-cli/compare/v1.5.1...v1.5.2) (2020-06-22)
+
+
+### Refactorings
+
+* removed console.log from api stack datatype generator ([b8be952](https://github.com/manablox/mana-cli/commit/b8be9522f2cf6fa92e90f81d450a13f75aa738c5))
+
 ### [1.5.1](https://github.com/manablox/mana-cli/compare/v1.5.0...v1.5.1) (2020-06-22)
 
 
