@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/manablox/mana-cli/compare/v1.4.0...v1.5.0) (2020-06-22)
+
+
+### Features
+
+* added build task, updated api stack template ([5a4d7ab](https://github.com/manablox/mana-cli/commit/5a4d7ab7f291c9793e4cd3f3af6a92b680f7b9ef))
+
 ## [1.4.0](https://github.com/manablox/mana-cli/compare/v1.3.0...v1.4.0) (2020-06-22)
 
 
