@@ -12,7 +12,9 @@ const Start = async () => {
             await graphModuleGenerator.Generate(types[i])
         }
 
-        console.log('datatypes generated', types.map((type) => { console.log(type.name) }))
+        console.log('generated datatypes')
+        console.log('--------------------')
+        types.map((type) => { console.log(type.name) })
     }catch(err){
         console.log(err)
     }

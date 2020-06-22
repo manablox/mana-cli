@@ -6,7 +6,10 @@ export default class DataProvider {
         this.config = config
 
         this.database = new MongoDBService(databaseConfig)
-        this.database.Connect()
+        try {
+            this.database.Connect()
+        }catch(err){ console.log('DB connection error', err) }
+        
     }
 
     async Find(...params){
