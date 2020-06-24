@@ -1,9 +1,9 @@
 <template>
-    <div class="typefieldeditor">
-         <label>Name</label> <input type="text" v-model="field.name" /><br>
-         <label>Type</label> 
+    <div class="parameditor">
+        <label>Name</label> <input type="text" v-model="param.name" /><br>
+        <label>Type</label> 
         
-        <select v-model="field.type">
+        <select v-model="param.type">
             <option 
                 v-for="(fieldType, fieldTypeIndex) in GetFieldTypes()"
                 :key="`fieldtype-${ fieldType.name }-${ fieldTypeIndex }`"
@@ -12,7 +12,6 @@
                 {{ fieldType.name }}
             </option>
         </select>
-        
     </div>
 </template>
 
@@ -21,7 +20,8 @@ export default {
     props: {
         type: { type: Object },
         datatype: { type: Object },
-        field: { type: Object }
+        field: { type: Object },
+        param: { type: Object },
     },
 
     
@@ -39,7 +39,7 @@ export default {
 
             this.$root.$datatypes.map((datatype) => {
                 datatype.schema.types.map((type) => {
-                    // if(type.id == this.type.id) return
+                    if(typeof this.type !== 'undefined' && type.name == this.type.name) return
                     customFieldTypes.push({ value: type.name, name: type.name })
                 })
             })

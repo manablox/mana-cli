@@ -4,26 +4,33 @@
             <Icon icon="document-add" class="inline-block h-4 w-4 fill-current text-blue-500 hover:text-blue-700" />
             Add new datatype
         </button>
-        <details
-            class="mx-2"
-            v-for="(datatype, datatypeIndex) in datatypes"
-            :key="`datatype-${ datatype.id }-${ datatypeIndex }`"
+        <div class="flex flex-wrap">
+            <div 
+                class="w-1/3 mb-2 px-2" 
+                v-for="(datatype, datatypeIndex) in datatypes"
+                :key="`datatype-${ datatype.id }-${ datatypeIndex }`"
+            >
+                <details>
+                    <summary>
+                        {{ datatype.name }}
+                        <div class="float-right -mt-1 -mr-1">
+                            <button type="button" class="h-8" @click="Export(datatype)">
+                                export
+                            </button>
+                            
+                            <button type="button"  class="h-8" v-if="!datatype.imported" @click="Delete(datatype)">
+                                <Icon icon="trash" class="inline-block h-4 w-4 fill-current text-blue-500 hover:text-blue-700" />
+                            </button>
+                        </div>
+                        
+                        
+                    </summary>
 
-        >
-            <summary>
-                {{ datatype.name }}
-                <button type="button" @click="Export(datatype)">
-                    export
-                </button>
-                
-                <button type="button" v-if="!datatype.imported" @click="Delete(datatype)">
-                    <Icon icon="trash" class="inline-block h-4 w-4 fill-current text-blue-500 hover:text-blue-700" />
-                </button>
-                
-            </summary>
-
-            <DatatypeEditor :datatype="datatype" />
-        </details>
+                    <DatatypeEditor :datatype="datatype" />
+                </details>
+            </div>
+        </div>
+        
     </div>
 </template>
 
@@ -49,6 +56,8 @@ export default {
                 name: 'NewDatatype',
                 collection: '',
                 imported: false,
+                imports: [],
+                provider: [],
                 schema: {
                     types: [],
                     inputTypes: [],

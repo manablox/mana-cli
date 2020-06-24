@@ -3,14 +3,17 @@ const fs = process.server ? require('fs') : undefined
 export const actions = {
     async nuxtServerInit({ commit }, context){
         let datatypeFiles = fs.readdirSync('../datatypes').filter((item) => {
-            return item.endsWith('.js')
+            return item.endsWith('.js') || item.endsWith('.json')
         })
 
         const datatypes = []
 
         for(let i = 0; i < datatypeFiles.length; i++){
-            const datatype = await import(`../../datatypes/${ datatypeFiles[i] }`)
-            datatypes.push({ ...datatype.default, imported: true, id: datatype.default.name })
+            try {
+                const datatype = await import(`../../datatypes/${ datatypeFiles[i] }`)
+                datatypes.push({ ...datatype.default, imported: true, id: datatype.default.name })
+            }catch(err){  }
+            
         }
 
         commit('datatypes/setDatatypes', datatypes)
