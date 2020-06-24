@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/manablox/mana-cli/compare/v1.5.9...v1.6.0) (2020-06-24)
+
+
+### Features
+
+* added base manablox app ([d2f24ff](https://github.com/manablox/mana-cli/commit/d2f24ffdf7902d44d033f3fcc196f4b0606a7cc9))
+
 ### [1.5.9](https://github.com/manablox/mana-cli/compare/v1.5.8...v1.5.9) (2020-06-22)
 
 
