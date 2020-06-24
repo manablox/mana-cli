@@ -1,0 +1,21 @@
+{
+  "name": "manablox-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "run": "yarn build; nuxt"
+  },
+  "dependencies": {
+    "@nuxtjs/tailwindcss": "^2.0.0",
+    "dotenv": "^8.2.0",
+    "moment": "^2.27.0",
+    "node-sass": "^4.14.1",
+    "nuxt": "^2.13.0",
+    "sass-loader": "^8.0.2",
+    "vue-zondicons": "^0.1.10",
+    "vuedraggable": "^2.23.2"
+  }
+}
